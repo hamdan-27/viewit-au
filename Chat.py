@@ -194,10 +194,19 @@ if "messages" not in st.session_state:
 # if len(msgs.messages) == 0:
 #     msgs.add_ai_message(welcome_msg)
 
+# bot_avatar = "imgs/mascot_crop.png"
+# bot_avatar = "https://viewit.ae/_nuxt/img/viewit-logo-no-text.25ba9bc.png"
+# bot_avatar = "imgs/viewit-logo-expanded.png"
+bot_avatar = "imgs/viewit-blue-on-white.png"
+# bot_avatar = "imgs/viewit-white-on-blue.png"
+
 feedback = None
 # Render current messages from StreamlitChatMessageHistory
 for n, msg in enumerate(st.session_state.messages):
-    st.chat_message(msg["role"]).write(msg["content"])
+    if msg["role"] == "assistant":
+        st.chat_message(msg["role"], avatar=bot_avatar).write(msg["content"])
+    else:
+        st.chat_message(msg["role"]).write(msg["content"])
 
 # for n, msg in enumerate(msgs.messages):
 #     st.chat_message(msg.type).write(msg.content)
@@ -286,7 +295,7 @@ else:
         # st.session_state['button_question'] = ""
 
         # Write AI response
-        with st.chat_message("assistant"):
+        with st.chat_message("assistant", avatar=bot_avatar):
             st.session_state.messages.append({"role": "assistant", "content": response})
             message_placeholder = st.empty()
             full_response = ""
