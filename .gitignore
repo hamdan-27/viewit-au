@@ -1,0 +1,6 @@
+__pycache__/
+.vscode/
+pages/page_template.py
+.streamlit/secrets.toml
+test.ipynb
+test.py
