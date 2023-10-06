@@ -89,7 +89,7 @@ spinner_texts = [
 ]
 
 # API keys
-openai.organization = st.secrets['org']
+# openai.organization = st.secrets['org']
 openai.api_key = st.secrets['api_key']
 os.environ["GPLACES_API_KEY"] = st.secrets['gplaces_key']
 
