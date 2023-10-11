@@ -62,19 +62,19 @@ TEMPERATURE = 0.1
 df = agents.load_data('au_new.csv')
 model = 'gpt-4'
 
-# llm = ChatOpenAI(temperature=TEMPERATURE,
-#                  model_name=model,
-#                  openai_api_key=st.secrets['api_key'])
+llm = ChatOpenAI(temperature=TEMPERATURE,
+                 model_name=model,
+                 openai_api_key=st.secrets['api_key'])
 
-llm = AzureChatOpenAI(
-    verbose=True,
-    temperature=TEMPERATURE,
-    openai_api_key=st.secrets['azure_key'],
-    openai_api_type = "azure",
-    openai_api_base = "https://viewit-ai.openai.azure.com/",
-    openai_api_version = "2023-07-01-preview",
-    deployment_name="Hamdan_16K"
-)
+# llm = AzureChatOpenAI(
+#     verbose=True,
+#     temperature=TEMPERATURE,
+#     openai_api_key=st.secrets['azure_key'],
+#     openai_api_type = "azure",
+#     openai_api_base = "https://viewit-ai.openai.azure.com/",
+#     openai_api_version = "2023-07-01-preview",
+#     deployment_name="Hamdan_16K"
+# )
 
 spinner_texts = [
     '🧠 Thinking...',
