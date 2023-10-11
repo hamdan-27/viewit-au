@@ -1,4 +1,4 @@
-# ViewIt Chatbot - for Pakistan
+# ViewIt Chatbot - for Australia
 
 _The complete AI real estate agent, and more._
 
@@ -11,7 +11,7 @@ _It is recommmended to create a virtual environment and install the requirements
     $ pip3 install -r requirements.txt
 
 ---
-### 1. `main.py`
+### 1. `Chat.py`
 
 For debugging:
 
@@ -22,7 +22,7 @@ Runs the chatbot on the streamlit interface. Simply navigate to this directory o
 
 ## Live app:
 
-[Open In Streamlit](https://viewit-ai-pk.streamlit.app/)
+[Open In Streamlit](https://viewit-ai-au.streamlit.app/)
 
 [Official Streamlit Documentation](https://docs.streamlit.io/)
 
