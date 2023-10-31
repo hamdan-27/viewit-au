@@ -1,5 +1,6 @@
 __pycache__/
 .vscode/
+data_transform.ipynb
 pages/page_template.py
 .streamlit/secrets.toml
 test.ipynb
