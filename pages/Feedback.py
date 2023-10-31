@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.css import custom_css
+from utils.css import icon_style, hide_elements
 from Chat import collector, model
 # from trubrics.integrations.streamlit import FeedbackCollector
 
@@ -7,14 +7,14 @@ try:
     st.set_page_config(page_title='Feedback • ViewIt-AI.AU',
                        page_icon='📝', layout='wide')
 except:
-    st.experimental_rerun()
+    st.rerun()
 
 
 # Add Viewit logo image to the center of page
 col1, col2, col3 = st.columns([1,1.2,1])
 with col2:
-    st.image("https://i.postimg.cc/Nfz5nZ8G/Logo.png", width=300)
-
+    # st.image("https://i.postimg.cc/Nfz5nZ8G/Logo.png", width=300)
+    st.image("imgs/Viewit ai Logo.png", width=300)
 
     st.subheader('⭐ Rate your experience!')
 
@@ -43,4 +43,7 @@ with st.sidebar:
 
     st.caption('© 2023 ViewIt. All rights reserved.')
 
-custom_css()
+# Hide `Made with Streamlit`
+hide_elements()
+# CSS for social icons
+icon_style()

@@ -1,6 +1,6 @@
-from utils.css import icon_style, hide_elements
 import utils.agents as agents
 from utils.prompts import *
+from utils import css
 
 import streamlit as st
 from datetime import datetime
@@ -89,7 +89,12 @@ spinner_texts = [
 ]
 
 # API keys
-# openai.organization = st.secrets['org']
+if type(llm) == ChatOpenAI:
+    openai.api_type = "open_ai"
+    openai.api_base = "https://api.openai.com/v1"
+    openai.api_key = st.secrets["api_key"]
+    openai.organization = st.secrets["org"]
+    openai.api_version = None
 openai.api_key = st.secrets['api_key']
 os.environ["GPLACES_API_KEY"] = st.secrets['gplaces_key']
 
@@ -99,7 +104,7 @@ os.environ["GPLACES_API_KEY"] = st.secrets['gplaces_key']
 # Add Viewit logo image to the center of page
 col1, col2, col3 = st.columns(3)
 with col2:
-    st.image("https://i.postimg.cc/Nfz5nZ8G/Logo.png", width=200)
+    st.image("imgs/Viewit ai Logo.png", width=200)
 
 
 # App Title
@@ -142,8 +147,8 @@ with st.sidebar:
     # Description
     st.markdown("""
                 # About
-                Introducing ViewIt.AI, a Real Estate Chatbot Assistant will help 
-                you out with all your real estate queries.
+                Introducing ViewIt.AI, a Real Estate Chatbot Assistant that can 
+                assist you with all your real estate queries 🤖
 
                 # Data
                 Uses an open source property data source currently limited to 
@@ -274,8 +279,9 @@ else:
 
         # Note: new messages are saved to history automatically by Langchain during run
         with st.spinner(random.choice(spinner_texts)):
-            icon_style()
-            hide_elements()
+            css.icon_style()
+            css.hide_elements()
+            css.ai_chatbox_style()
             try:
                 # Get token usage info with openai callback
                 with get_openai_callback() as cb:
@@ -327,5 +333,6 @@ if len(st.session_state.messages) == 3:
     st.toast("Tip: Press `R` to refresh the app.", icon="ℹ️")
 
 # CSS for social icons
-icon_style()
-hide_elements()
+css.icon_style()
+css.hide_elements()
+css.ai_chatbox_style()
