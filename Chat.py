@@ -1,16 +1,19 @@
+from langchain_openai.chat_models import ChatOpenAI, AzureChatOpenAI
+# from langchain.schema.messages import HumanMessage, AIMessage
+from langchain_community.callbacks import get_openai_callback
+# from langchain.agents import create_pandas_dataframe_agent
+
+from trubrics.integrations.streamlit import FeedbackCollector
+
+import uuid, time, random#, openai
+from datetime import datetime
+
+import streamlit as st
+
 import utils.agents as agents
 from utils.prompts import *
 from utils import css
 
-import streamlit as st
-from datetime import datetime
-import os, uuid, time, openai, random
-
-from trubrics.integrations.streamlit import FeedbackCollector
-from langchain.chat_models import ChatOpenAI, AzureChatOpenAI
-from langchain.callbacks import get_openai_callback
-# from langchain.schema.messages import HumanMessage, AIMessage
-# from langchain.agents import create_pandas_dataframe_agent
 
 # Set page launch configurations
 try:
@@ -39,7 +42,6 @@ def init_trubrics(project='default', email=st.secrets.TRUBRICS_EMAIL, password=s
         password=password
     )
     return collector
-
 
 
 collector = init_trubrics(project='viewit-au')
@@ -89,14 +91,14 @@ spinner_texts = [
 ]
 
 # API keys
-if type(llm) == ChatOpenAI:
-    openai.api_type = "open_ai"
-    openai.api_base = "https://api.openai.com/v1"
-    openai.api_key = st.secrets["api_key"]
-    openai.organization = st.secrets["org"]
-    openai.api_version = None
-openai.api_key = st.secrets['api_key']
-os.environ["GPLACES_API_KEY"] = st.secrets['gplaces_key']
+# if type(llm) == ChatOpenAI:
+#     openai.api_type = "open_ai"
+#     openai.api_base = "https://api.openai.com/v1"
+#     openai.api_key = st.secrets["api_key"]
+#     openai.organization = st.secrets["org"]
+#     openai.api_version = None
+# openai.api_key = st.secrets['api_key']
+# os.environ["GPLACES_API_KEY"] = st.secrets['gplaces_key']
 
 
 # APP INTERFACE START #
@@ -258,7 +260,7 @@ if len(st.session_state.messages) >= max_messages:
         """**Notice:** The maximum message limit for this demo version has been reached. 
         We value your interest! Like what we're building? Please create 
         an account to continue using, or check our available pricing plans 
-        [here](https://viewit.ai/)."""
+        [here](https://www.viewitdubai.com/products/viewit-ai)."""
     )
     # TODO: Add HubSpot form if needed
 
@@ -327,7 +329,7 @@ else:
         response_log = f"Bot [{datetime.now().strftime('%H:%M:%S')}]: " + \
             response
         print(response_log)
-        # st.experimental_rerun()
+        # st.rerun()
 
 if len(st.session_state.messages) == 3:
     st.toast("Tip: Press `R` to refresh the app.", icon="ℹ️")

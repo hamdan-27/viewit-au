@@ -1,7 +1,7 @@
-import streamlit as st
+# from trubrics.integrations.streamlit import FeedbackCollector
 from utils.css import icon_style, hide_elements
 from Chat import collector, model
-# from trubrics.integrations.streamlit import FeedbackCollector
+import streamlit as st
 
 try:
     st.set_page_config(page_title='Feedback • ViewIt-AI.AU',
